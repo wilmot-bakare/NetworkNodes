@@ -17,7 +17,7 @@ namespace Network.Service.Implementations
         {
             _logger = logger;
         }
-        public async Task<Response> GetDownstreamCustomers(RootNode rootNode)
+        public Response GetDownstreamCustomers(RootNode rootNode)
         {
             _logger.LogInformation($"GetDownstreamCustomers service: Selected node:{rootNode.SelectedNode}");
             try
@@ -30,7 +30,7 @@ namespace Network.Service.Implementations
                 while (queue.Count > 0)
                 {
                     int currentNode = queue.Dequeue();
-                    reponse.DownstreamCustomers += await GetCustomersForNode(rootNode.Network, currentNode);
+                    reponse.DownstreamCustomers +=  GetCustomersForNode(rootNode.Network, currentNode);
 
                     foreach (var branch in rootNode.Network.Branches)
                     {
@@ -51,7 +51,7 @@ namespace Network.Service.Implementations
             }
         }
 
-        public async Task<int> GetCustomersForNode(NetworkData networkData, int node)
+        public int GetCustomersForNode(NetworkData networkData, int node)
         {
             foreach (var customer in networkData.Customers)
             {

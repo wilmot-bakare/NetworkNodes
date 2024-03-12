@@ -9,6 +9,6 @@ namespace Network.Service.Interfaces
 {
     public interface INetworkService
     {
-        Task <Response> GetDownstreamCustomers(RootNode rootNode);
+        Response GetDownstreamCustomers(RootNode rootNode);
     }
 }
